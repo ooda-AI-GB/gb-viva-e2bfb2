@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Invoices</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Date Issued</th>
+            <th>Project</th>
+            <th>Amount</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for invoice in invoices %}
+        <tr>
+            <td>{{ invoice.date_issued }}</td>
+            <td>{{ invoice.project.name }}</td>
+            <td>${{ invoice.amount }}</td>
+            <td>
+                <span class="badge {{ invoice.status }}">{{ invoice.status }}</span>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

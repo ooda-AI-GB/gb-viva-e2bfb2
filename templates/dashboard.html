@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content">
+    <h1>Dashboard</h1>
+    
+    <div class="card-grid">
+        <div class="card">
+            <h3>Active Projects</h3>
+            <div class="value">{{ active_projects }}</div>
+        </div>
+        
+        <div class="card">
+            <h3>Total Hours (This Month)</h3>
+            <div class="value">{{ total_hours }}</div>
+        </div>
+        
+        <div class="card">
+            <h3>Pending Invoices</h3>
+            <div class="value">{{ pending_invoices }}</div>
+        </div>
+        
+        <div class="card">
+            <h3>Total Earned (Paid)</h3>
+            <div class="value">${{ total_earned }}</div>
+        </div>
+    </div>
+    
+    <!-- Maybe a recent activity section or simple welcome -->
+    <div style="background: white; padding: 20px; border-radius: 8px;">
+        <h2>Welcome, {{ user.username }}!</h2>
+        <p>This is your project management dashboard. Use the sidebar to navigate to your projects, time logs, and invoices.</p>
+    </div>
+</div>
+{% endblock %}

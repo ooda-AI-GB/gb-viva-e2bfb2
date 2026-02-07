@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Projects</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Client</th>
+            <th>Status</th>
+            <th>Deadline</th>
+            <th>Budget</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for project in projects %}
+        <tr>
+            <td>{{ project.name }}</td>
+            <td>{{ project.client.name }}</td>
+            <td>
+                <span class="badge {{ project.status }}">{{ project.status }}</span>
+            </td>
+            <td>{{ project.deadline }}</td>
+            <td>${{ project.budget }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

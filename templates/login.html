@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Freelancer Tracker</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="login-container">
+    <div class="login-box">
+        <h2>Welcome Back</h2>
+        {% if request.query_params.get("error") %}
+        <div class="error-message">
+            {{ request.query_params.get("error") }}
+        </div>
+        {% endif %}
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required placeholder="admin / freelancer / client">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="same as username">
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%;">Login</button>
+        </form>
+        <p style="margin-top: 20px; font-size: 0.8rem; color: #666;">
+            Demo Accounts:<br>
+            admin / admin<br>
+            freelancer / freelancer<br>
+            client / client
+        </p>
+    </div>
+</body>
+</html>

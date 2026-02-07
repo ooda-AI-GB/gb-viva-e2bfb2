@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Tracker</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    {% if user %}
+    <div class="sidebar">
+        <div class="brand">PRO TRACKER</div>
+        <ul class="nav-links">
+            <li><a href="/dashboard" {% if request.url.path == '/dashboard' %}class="active"{% endif %}>Dashboard</a></li>
+            <li><a href="/projects" {% if request.url.path == '/projects' %}class="active"{% endif %}>Projects</a></li>
+            <li><a href="/timelogs" {% if request.url.path == '/timelogs' %}class="active"{% endif %}>Time Logs</a></li>
+            <li><a href="/invoices" {% if request.url.path == '/invoices' %}class="active"{% endif %}>Invoices</a></li>
+            <li><a href="/reports" {% if request.url.path == '/reports' %}class="active"{% endif %}>Reports</a></li>
+        </ul>
+        <div class="user-info">
+            <div>{{ user.username }}</div>
+            <div class="user-role">{{ user.role }}</div>
+            <a href="/logout" style="margin-top: 10px; padding: 5px 0; font-size: 0.8rem; color: #ef4444;">Logout</a>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="main-content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

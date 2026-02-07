@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Reports</h1>
+
+<div class="card-grid" style="grid-template-columns: 1fr;">
+    <!-- Project Hours Chart -->
+    <div class="chart-container">
+        <h3>Hours per Project</h3>
+        <div class="bar-chart">
+            {% for item in project_data %}
+            <div class="bar" style="height: {{ (item.hours / max_hours * 200)|round }}px; background-color: var(--accent-color);">
+                <div class="bar-label">{{ item.name }} ({{ item.hours }})</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% if user.role != 'client' %}
+<div class="card-grid" style="grid-template-columns: 1fr 1fr;">
+    <!-- Monthly Revenue -->
+    <div class="chart-container">
+        <h3>Monthly Revenue</h3>
+        <div class="bar-chart">
+            {% for item in monthly_data %}
+            <div class="bar" style="height: {{ (item.amount / max_monthly * 200)|round }}px; background-color: var(--success);">
+                <div class="bar-label">{{ item.month }} (${{ item.amount }})</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Top Clients -->
+    <div class="chart-container">
+        <h3>Top Clients by Revenue</h3>
+        <div class="bar-chart">
+            {% for item in client_data %}
+            <div class="bar" style="height: {{ (item.amount / max_client * 200)|round }}px; background-color: var(--primary-color);">
+                <div class="bar-label">{{ item.name }} (${{ item.amount }})</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
